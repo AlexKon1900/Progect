@@ -53,7 +53,6 @@ public class TestClass extends BaseTest {
 //
 //        List<WebElement> elements = driver.findElements(By.xpath("//[@li@data-zone-name = 'category-link']"));
 //
-//
 //        Assert.assertEquals(elements.size(), 26, " ");
 //        int random = (int) (Math.random() * elements.size());
 //        elements.get(random).click();
