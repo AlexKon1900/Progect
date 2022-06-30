@@ -3,6 +3,7 @@ package selenium.project.tests;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import selenium.framework.aiert.MenegerAlert;
 import selenium.framework.cookies.ManagerCookie;
 import selenium.project.pages.HomePage;
 
@@ -59,6 +60,14 @@ public class TestClass extends BaseTest {
 
     }
 
+    @Test
+    public void test2() throws InterruptedException {
+        HomePage homePage = new HomePage();
+        homePage.open();
+        homePage.clickJSAlert();
+        Assert.assertEquals(MenegerAlert.getText(), "I am a JS Alert", "text does not match");
+
+    }
 
 }
 

@@ -5,15 +5,14 @@ import selenium.framework.browser.Browser;
 import selenium.framework.elements.FormElement;
 
 public class HomePage extends BasePage {
-    private FormElement responseAuth = new FormElement(By.xpath("/html/body/pre"), "responseAuth");
+
+    private FormElement button1 = new FormElement(By.xpath("//button[@onclick='jsAlert()'])"),"button1");
 
     public void open() {
         Browser.BROWSER.open();
     }
 
-    public String getText () {
-        return responseAuth.getText();
-
+    public void clickJSAlert() {
+        button1.click();
     }
-
 }
