@@ -8,6 +8,7 @@ public class MenegerAlert {
     private static WebDriver driver = Browser.BROWSER.getDriver();
 
     public static String getText() {
+
         return driver.switchTo().alert().getText();
     }
 
