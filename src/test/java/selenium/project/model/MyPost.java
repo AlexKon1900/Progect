@@ -1,5 +1,7 @@
 package selenium.project.model;
 
+import java.util.Objects;
+
 public class MyPost {
 
     private int id;
@@ -40,6 +42,22 @@ public class MyPost {
 
     public String getBody() {
         return body;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyPost myPost = (MyPost) o;
+        return id == myPost.id &&
+                userId == myPost.userId &&
+                Objects.equals(title, myPost.title) &&
+                Objects.equals(body, myPost.body);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userId, title, body);
     }
 
     public void setBody(String body) {

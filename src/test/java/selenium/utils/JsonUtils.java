@@ -1,7 +1,12 @@
 package selenium.utils;
 
 import com.google.gson.Gson;
+import org.apache.commons.io.FileUtils;
 import selenium.project.model.MyPost;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
 
 public class JsonUtils {
 
@@ -12,4 +17,13 @@ public class JsonUtils {
         return myPost;
     }
 
+    public static <T> T createOject(String path, Class<T> clazz) {
+        String jsonText = null;
+        try {
+            jsonText = FileUtils.readFileToString(new File(path), Charset.defaultCharset());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return gson.fromJson(jsonText, clazz);
+    }
 }

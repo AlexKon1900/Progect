@@ -9,7 +9,12 @@ import org.testng.annotations.Test;
 import selenium.framework.aiert.MenegerAlert;
 import selenium.framework.cookies.ManagerCookie;
 import selenium.framework.rest.RestManager;
+import selenium.project.model.MyPost;
 import selenium.project.pages.HomePage;
+import selenium.utils.Fixtures;
+import selenium.utils.JsonUtils;
+
+import java.io.FileNotFoundException;
 
 public class TestClass extends BaseTest {
 
@@ -22,19 +27,28 @@ public class TestClass extends BaseTest {
 
 
     @Test
-    public void test() {
+    public void checkPostId88() throws FileNotFoundException {
         HttpResponse<JsonNode> responseId88 = RestManager.getPostById(88);
         Assert.assertNotNull(responseId88, "responseId88 is null");
 
         Assert.assertEquals(responseId88.getStatus(), 200);
-        Assert.assertEquals(responseId88.getBody().toPrettyString(), "{\n" +
-                "  \"userId\": 9,\n" +
-                "  \"id\": 88,\n" +
-                "  \"title\": \"sapiente omnis fugit eos\",\n" +
-                "  \"body\": \"consequatur omnis est praesentium\\nducimus non iste\\nneque hic deserunt\\nvoluptatibus veniam cum et rerum sed\"\n" +
-                "}");
+
+        MyPost expected = JsonUtils.createOject(Fixtures.POST_ID_88, MyPost.class);
+        MyPost actual = JsonUtils.createMyPostByJson(responseId88.getBody().toString());
+
+        Assert.assertEquals(actual, expected, "");
+
     }
 
+    @Test
+    public void checkPostsId101()  throws FileNotFoundException {
+        HttpResponse<JsonNode> responseId101 = RestManager.getPostById(101);
+        Assert.assertNotNull(responseId101, "responseId101 is null");
+
+        Assert.assertEquals(responseId101.getStatus(), 404);
+        Assert.assertEquals(responseId101.getBody().toPrettyString(), "{}");
+
+    }
 }
 
 
